@@ -88,6 +88,50 @@ const data = [
   }
 ];
 
+function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph, button){
+  // define elements
+  const card = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const datet = document.createElement('p')
+  const paraOne = document.createElement('p')
+  const paraTwo = document.createElement('p')
+  const paraThree = document.createElement('p')
+  const clicker = document.createElement('button')
+
+  const tranSpeed = event => event.target.style.transition = "0.3s"
+  const open = event => event.target.classList.add 
+
+
+  card.classList.add('article')
+  h2.classList.add('h2')
+  datet.classList.add('date')
+  paraOne.classList.add('first-paragraph')
+  paraTwo.classList.add('second-paragraph')
+  paraThree.classList.add('third-paragraph')
+  clicker.classList.add('expand-button')
+
+  card.append(h2, datet, paraOne, paraTwo, paraThree, clicker)
+
+  h2.textContent = title
+  datet.textContent = date
+  paraOne.textContent = firstParagraph
+  paraTwo.textContent = secondParagraph
+  paraThree.textContent = thirdParagraph
+  
+  const open = '\u25bc'
+  clicker.textContent = open
+
+  // event listeners
+  card.addEventListener('click',()  => {
+    clicker.classList.toggle('article-open')
+  })
+
+  return card
+}
+
+const article = document.querySelector(".articles")
+console.log('article')
+data.forEach(data => article.appendChild(createCard(data.title, data.date, data.content, data.contentTwo, data.contentThree, data.button)))
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -99,6 +143,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+  
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
