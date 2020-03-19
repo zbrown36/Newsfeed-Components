@@ -88,7 +88,8 @@ const data = [
   }
 ];
 
-function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph, button){
+function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
   // define elements
   const card = document.createElement('div')
   const h2 = document.createElement('h2')
@@ -96,11 +97,22 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   const paraOne = document.createElement('p')
   const paraTwo = document.createElement('p')
   const paraThree = document.createElement('p')
+  const cardButtons = document.createElement('span')
   const clicker = document.createElement('button')
+  const clickerClose = document.createElement('button')
 
-  const tranSpeed = event => event.target.style.transition = "0.3s"
-  const open = event => event.target.classList.add 
+  //create structure
 
+  card.appendChild(h2)
+  card.appendChild(datet)
+  card.appendChild(paraOne)
+  card.appendChild(paraTwo)
+  card.appendChild(paraThree)
+  card.appendChild(cardButtons)
+  cardButtons.appendChild(clicker)
+  cardButtons.appendChild(clickerClose)
+
+  //add classes for style/identification
 
   card.classList.add('article')
   h2.classList.add('h2')
@@ -108,9 +120,11 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   paraOne.classList.add('first-paragraph')
   paraTwo.classList.add('second-paragraph')
   paraThree.classList.add('third-paragraph')
+  cardButtons.classList.add('expand-button')
   clicker.classList.add('expand-button')
+  clickerClose.classList.add('close')
 
-  card.append(h2, datet, paraOne, paraTwo, paraThree, clicker)
+  //add content to elements
 
   h2.textContent = title
   datet.textContent = date
@@ -118,12 +132,20 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   paraTwo.textContent = secondParagraph
   paraThree.textContent = thirdParagraph
   
+
   const open = '\u25bc'
   clicker.textContent = open
+  
+  const close = '\u25b6'
+  clickerClose.textContent = close
+  
+
 
   // event listeners
   card.addEventListener('click',()  => {
-    clicker.classList.toggle('article-open')
+    card.classList.toggle('article-open')
+    clicker.classList.toggle('')
+    clickerClose.classList.toggle('article-open')
   })
 
   return card
@@ -131,7 +153,9 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
 
 const article = document.querySelector(".articles")
 console.log('article')
-data.forEach(data => article.appendChild(createCard(data.title, data.date, data.content, data.contentTwo, data.contentThree, data.button)))
+data.forEach(data => article.appendChild(createCard(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph, data.button)))
+
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
