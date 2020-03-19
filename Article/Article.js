@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: ' Here is my new article',
+    date: 'date is today',
+    firstParagraph: `alksjdfkaskjdbgkjabskljdgkjabsk.dfjkasdfbvkajsdk.vna.ksj`,
+    secondParagraph:`lasjbdjkfkasdfkkjasdfk.vn.kjasnd.vn kandk.jnakskdn kna ksdnjknasjk.dfnklsdfkbnsk.dng,bf`,
+    thirdParagraph:`this was just to see if there was actual text showing up`
   }
 ];
 
@@ -100,6 +107,7 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   const cardButtons = document.createElement('span')
   const clicker = document.createElement('button')
   const clickerClose = document.createElement('button')
+  
 
   //create structure
 
@@ -110,7 +118,7 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   card.appendChild(paraThree)
   card.appendChild(cardButtons)
   cardButtons.appendChild(clicker)
-  cardButtons.appendChild(clickerClose)
+  
 
   //add classes for style/identification
 
@@ -121,8 +129,9 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   paraTwo.classList.add('second-paragraph')
   paraThree.classList.add('third-paragraph')
   cardButtons.classList.add('expand-button')
-  clicker.classList.add('expand-button')
+  clicker.classList.add('close')
   clickerClose.classList.add('close')
+  
 
   //add content to elements
 
@@ -133,10 +142,10 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   paraThree.textContent = thirdParagraph
   
 
-  const open = '\u25bc'
+  const open = '\u25b6'
   clicker.textContent = open
   
-  const close = '\u25b6'
+  const close = '\u25bc'
   clickerClose.textContent = close
   
 
@@ -144,8 +153,8 @@ function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph
   // event listeners
   card.addEventListener('click',()  => {
     card.classList.toggle('article-open')
-    clicker.classList.toggle('')
-    clickerClose.classList.toggle('article-open')
+    clicker.classList.toggle('hide')
+    // clickerClose.classList.toggle('article-open')
   })
 
   return card
