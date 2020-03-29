@@ -85,8 +85,85 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: ' Here is my new article',
+    date: 'date is today',
+    firstParagraph: `alksjdfkaskjdbgkjabskljdgkjabsk.dfjkasdfbvkajsdk.vna.ksj`,
+    secondParagraph:`lasjbdjkfkasdfkkjasdfk.vn.kjasnd.vn kandk.jnakskdn kna ksdnjknasjk.dfnklsdfkbnsk.dng,bf`,
+    thirdParagraph:`this was just to see if there was actual text showing up`
   }
 ];
+
+function createCard(title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+  // define elements
+  const card = document.createElement('div')
+  const h2 = document.createElement('h2')
+  const datet = document.createElement('p')
+  const paraOne = document.createElement('p')
+  const paraTwo = document.createElement('p')
+  const paraThree = document.createElement('p')
+  const cardButtons = document.createElement('span')
+  const clicker = document.createElement('button')
+  const clickerClose = document.createElement('button')
+  
+
+  //create structure
+
+  card.appendChild(h2)
+  card.appendChild(datet)
+  card.appendChild(paraOne)
+  card.appendChild(paraTwo)
+  card.appendChild(paraThree)
+  card.appendChild(cardButtons)
+  cardButtons.appendChild(clicker)
+  
+
+  //add classes for style/identification
+
+  card.classList.add('article')
+  h2.classList.add('h2')
+  datet.classList.add('date')
+  paraOne.classList.add('first-paragraph')
+  paraTwo.classList.add('second-paragraph')
+  paraThree.classList.add('third-paragraph')
+  cardButtons.classList.add('expand-button')
+  clicker.classList.add('close')
+  clickerClose.classList.add('close')
+  
+
+  //add content to elements
+
+  h2.textContent = title
+  datet.textContent = date
+  paraOne.textContent = firstParagraph
+  paraTwo.textContent = secondParagraph
+  paraThree.textContent = thirdParagraph
+  
+
+  const open = '\u25b6'
+  clicker.textContent = open
+  
+  const close = '\u25bc'
+  clickerClose.textContent = close
+  
+
+
+  // event listeners
+  card.addEventListener('click',()  => {
+    card.classList.toggle('article-open')
+    clicker.classList.toggle('hide')
+    // clickerClose.classList.toggle('article-open')
+  })
+
+  return card
+}
+
+const article = document.querySelector(".articles")
+console.log('article')
+data.forEach(data => article.appendChild(createCard(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph, data.button)))
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -99,6 +176,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+  
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
